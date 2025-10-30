@@ -1,0 +1,117 @@
+<html lang="vi"><head>
+    <link rel="stylesheet" href="geometry.css">
+    
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Mario Toan Hoc V5 - Toan Chien</title>
+</head>
+<body>
+    
+  <div class="dat"></div>
+
+<div id="huongDanPhim">
+  <div class="phim">
+    <span class="nut">←</span>
+    <span class="nut">→</span>
+  
+    <span class="moTa">Di chuyển</span>
+  </div>
+  <div class="phim">
+
+    <span class="nut">A</span>
+    
+    <span class="nut">D</span>
+    <span class="moTa">Di chuyển</span>
+  </div>
+  <div class="phim">
+    <span class="nut">R</span>
+    <span class="nut">N</span>
+    <span class="moTa">Đặt / Ném vật phẩm</span>
+     <span class="moTa">Bắn đạn</span>
+  </div>
+    <div class="phim">
+    <span class="nut">W</span>
+    <span class="nut">↑</span>
+    <span class="moTa">Nhảy</span>
+  </div>
+
+
+  <div class="phim">
+    <span class="nut">ESC</span>
+    <span class="moTa">Về menu</span>
+  </div>
+    <div class="phim">
+    
+    <span class="moTa">ném item đỏ vào quái đặt biệt Tiêu diệt</span>
+    <span class="moTa">item Vàng để Mở Cổng, đặt nó Vào "Ô"</span>
+  </div>
+</div>
+
+
+<div id="thanhThongTin">
+  <div id="cauHoi">Màn 1: Mở cổng = 4 + 7 ; Tiêu diệt boss = 9 + 8 ?</div>
+  <div id="diemSo">⭐ Điểm: 0</div>
+</div>
+
+
+<div id="thongBao" style="color: rgb(204, 0, 0);">Đã thả item xuống đất.</div>
+<div id="khungNgoai">
+  <!-- MENU BẮT ĐẦU GAME -->
+<div id="menuChinh">
+  <div class="menuNoiDung">
+    <h1>🎮 Mario Toán Học</h1>
+    <p>Chọn lớp học để bắt đầu:</p>
+    <div id="chonLop" style="display:flex;gap:10px;justify-content:center;margin:15px 0;">
+      <button class="nutLop" data-lop="1">Lớp 1</button>
+      <button class="nutLop" data-lop="2">Lớp 2</button>
+      <button class="nutLop" data-lop="3">Lớp 3</button>
+      <button class="nutLop" data-lop="4">Lớp 4</button>
+      <button class="nutLop" data-lop="5">Lớp 5</button>
+    </div>
+    <button id="nutStart" disabled>Bắt đầu 🎯</button>
+  </div>
+</div>
+
+
+<!-- MÀN HÌNH GAME OVER -->
+<div id="gameOver" style="display:none;">
+  <div class="overNoiDung">
+    <h2>Bạn đã thua 💀</h2>
+    <p>Nhấn R, T, Space, Enter, hoặc phím di chuyển để chơi lại</p>
+  </div>
+</div>
+
+  <div id="khungGame" style="transform: translateX(-415.6px);">
+    <div class="lopCo"></div>
+    <div class="may" style="width:80px;height:40px;top:40px;left:200px;"></div>
+    <div class="may" style="width:120px;height:50px;top:80px;left:800px;"></div>
+    <div class="may" style="width:90px;height:45px;top:50px;left:1500px;"></div>
+    <div class="may" style="width:110px;height:55px;top:100px;left:2300px;"></div>
+    <div id="nhanVat" style="transform: scale(1, 1); left: 1351.6px; bottom: 0px;"><div class="hangMat"><div class="matTrai"></div><div class="matPhai"></div></div><div class="miengCuoi"></div><div id="vatCam" style="display: none; background: rgb(255, 230, 92); color: rgb(0, 0, 0);">11</div></div>
+    <div id="cong">Cong</div>
+    <div id="oDeItem" style="
+  position:absolute;
+  width:40px;
+  height:20px;
+  background:#aaa;
+  border:2px solid #333;
+  bottom:0;
+  right:110px;
+  border-radius:4px;
+  text-align:center;
+  font-size:10px;
+  color:#000;
+  line-height:18px;
+  font-weight:bold;
+">Ô</div>
+
+    <div id="hintNhat" class="hintNhat" style="display: block; left: 1361.6px; bottom: 35px;">Nhấn n hoặc r để nhặt </div>
+  <div class="nen" style="left: 477.479px; bottom: 212.286px; width: 163px;"></div><div class="nen" style="left: 2330.68px; bottom: 52.7118px; width: 162px;"></div><div class="nen" style="left: 1658.34px; bottom: 123.222px; width: 148px;"></div><div class="nen" style="left: 1595.1px; bottom: 171.75px; width: 118px;"></div><div class="nen" style="left: 1394.89px; bottom: 203.491px; width: 209px;"></div><div class="nen" style="left: 742.803px; bottom: 143.994px; width: 106px;"></div><div class="nen moving" style="left: 1556.9px; bottom: 60.6365px; width: 97px;"></div><div class="nen moving" style="left: 1742.87px; bottom: 158.725px; width: 94px;"></div><div class="nen moving" style="left: 894.613px; bottom: 234.095px; width: 112px;"></div><div class="gai" style="left: 748.283px; bottom: 163.994px;"></div><div class="gai" style="left: 831.945px; bottom: 0px;"></div><div class="quaiThuong" style="left: 527px; bottom: 0px;"><div class="matQuai">:(</div></div><div class="quaiBoss" style="left: 1691.06px; bottom: 0px;"><div class="matQuaiBoss">&gt;:)</div></div><div class="bongPhepToan" style="left: 1713.56px; bottom: 40px;">9 + 8 = ?</div><div class="vatPhamDo" style="left: 1478.84px; bottom: 223.491px;">17</div><div class="vatPhamDo" style="left: 1668.28px; bottom: 143.222px;">1</div><div class="vatPhamDo" style="left: 1770.77px; bottom: 178.725px;">6</div><div class="vatPham" style="left: 1729.16px; bottom: 143.222px;">5</div><div class="vatPham" style="left: 1540.06px; bottom: 223.491px;">15</div><div class="vatPham" style="left: 1128.8px; bottom: 0px;">3</div><div class="vatPham" style="left: 1588.8px; bottom: 0px;">18</div><div class="vatPhamDo" style="left: 1361.6px; bottom: 0px;">11</div></div>
+</div>
+<script src="geometry.js"></script>
+
+    </body>
+
+</html>
+
