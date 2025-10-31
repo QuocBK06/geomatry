@@ -101,11 +101,6 @@ if((k === "w" || k === "arrowup" || k === " ") && dungTrenNen && !chet && !ketTh
   dungTrenNen = false;
   nhanVat.style.transform = "scaleX(0.8) scaleY(1.2)";
 }
-
-// PHIM T HOAC M: nem dan thuong
-if ((k === "t" || k === "m") && !chet && !ketThucMan) {
-  nemDanThuong();
-}
 // =============================
 // PHIM HANH DONG (N hoặc R)
 // =============================
@@ -123,10 +118,7 @@ if((k === "n" || k === "r") && !chet && !ketThucMan){
     }
   }
 }
-
-
 });
-
 document.addEventListener("keyup", e => {
   const k = e.key.toLowerCase();
 
@@ -200,7 +192,7 @@ function showHint(xItem,yItem){
 // SINH MAN MOI
 // =============================
 function taoMan(){
-/// 🌈 Đổi màu nền trời + nền đất theo lớp học (1–5)
+///  Đổi màu nền trời + nền đất theo lớp học (1–5)
 switch (lopHoc) {
   case 1: // Sáng sớm
     khungGame.style.background = "linear-gradient(to top, #c8e6c9 0%, #81c784 100%)"; // trời xanh lá nhạt
@@ -328,19 +320,14 @@ switch (lopHoc) {
 
   case 3: {
   // Lớp 3: phép chia hết, cộng/trừ đơn giản, và nhân cho boss
-
   const type3 = randInt(1, 3);
-
   if (type3 === 1) {
-    // BÀI MỞ CỔNG DẠNG CHIA HẾT
-    // Chúng ta chọn soB_cong là 2,3,4 hoặc 5
-    // rồi tạo soA_cong = k * soB_cong để đảm bảo chia ra số nguyên
     const chiaCho = [2,3,4,5][randInt(0,3)];
-    const k = randInt(2, 15); // kết quả sau chia
+    const k = randInt(2, 15); 
     soA_cong = chiaCho * k;
     soB_cong = chiaCho;
     phepTinhCong = "÷";
-    dapAnCong = k; // vì soA_cong / soB_cong = k (nguyên)
+    dapAnCong = k; 
   } else if (type3 === 2) {
     // BÀI MỞ CỔNG DẠNG CỘNG/TRỪ SỐ TỰ NHIÊN
     soA_cong = randInt(10, 50);
@@ -429,7 +416,7 @@ cauHoi.textContent =
   `Lớp ${lopHoc} | Màn ${manHienTai}: Mở cổng = ${soA_cong} ${phepTinhCong} ${soB_cong} ; Tiêu diệt boss = ${soA_boss} ${phepTinhBoss} ${soB_boss} ?`;
 
 
-// ✅ Tính đáp án thật theo loại phép toán
+//  Tính đáp án thật theo loại phép toán
 if (phepTinhCong === "+") dapAnCong = soA_cong + soB_cong;
 else if (phepTinhCong === "-") dapAnCong = soA_cong - soB_cong;
 else if (phepTinhCong === "×") dapAnCong = soA_cong * soB_cong;
@@ -591,11 +578,10 @@ for (let i = 0; i < soQuaiThuong; i++) {
     trai: trai,
     phai: phai,
     huong: Math.random() < 0.5 ? 1 : -1,
-    tocDo: 0.5 // giam toc do di chuyen xuong mot nua
+    tocDo: 0.5 
   };
 
   danhSachQuaiThuong.push(q);
-
   const qDiv = document.createElement("div");
   qDiv.className = "quaiThuong";
   qDiv.style.left = q.x + "px";
@@ -604,14 +590,11 @@ for (let i = 0; i < soQuaiThuong; i++) {
   khungGame.appendChild(qDiv);
   q.node = qDiv;
 }
-
-
   // tao boss dac biet 1 con
   {
     const trai = randFloat(600, khungGame.clientWidth-400);
     const phai = trai + randFloat(180,260);
     const batDau = randFloat(trai, phai-45);
-
     quaiBoss={
       x:batDau,
       y:0,
@@ -623,14 +606,12 @@ for (let i = 0; i < soQuaiThuong; i++) {
       tocDo:0.5,
       song:true
     };
-
     const bossDiv=document.createElement("div");
     bossDiv.className="quaiBoss";
     bossDiv.style.left=quaiBoss.x+"px";
     bossDiv.style.bottom=quaiBoss.y+"px";
     bossDiv.innerHTML='<div class="matQuaiBoss">>:)</div>';
     khungGame.appendChild(bossDiv);
-
     // bong phep toan hien soA_boss + soB_boss
     let chuDeBoss;
 
@@ -650,7 +631,6 @@ if (phepTinhBoss === "Giờ + phút") {
 } else {
   chuDeBoss = `${soA_boss} ${phepTinhBoss} ${soB_boss} = ?`;
 }
-
 
 const bong=document.createElement("div");
 bong.className="bongPhepToan";
@@ -697,7 +677,6 @@ function taoGiaTriSaiGan(dapAnCong, dapAnBoss) {
 
     return `${saiGio}g${saiPhut}p`;
   }
-
   // Các lớp khác: số bình thường lệch nhẹ ±3 quanh đáp án thực
   const goc = (typeof dapAnCong === "number")
       ? dapAnCong
@@ -764,8 +743,6 @@ function taoViTriItemHopLe(yeuCauXaNguoi){
 
   return { x: viTriX, y: viTriY, nenIndex: nenIndex };
 }
-
-
   // tao item do cong (chìa khóa vàng)
 {
   const vitri = taoViTriItemHopLe(true); // phai xa nguoi choi
@@ -809,7 +786,6 @@ function taoViTriItemHopLe(yeuCauXaNguoi){
     danhSachItem.push(obj);
   }
 // tao them 2 item do "giả boss": nhìn giống hàng xịn, để troll người chơi
-// tao them 2 item do "giả boss": nhìn giống hàng xịn, để troll người chơi
 for (let i = 0; i < 2; i++) {
   const vitri = taoViTriItemHopLe(false);
 
@@ -837,7 +813,7 @@ for (let i = 0; i < 2; i++) {
   }
 
   const nodeDoSai = document.createElement("div");
-  nodeDoSai.className = "vatPhamDo"; // màu đỏ giống item boss thật
+  nodeDoSai.className = "vatPhamDo"; 
   nodeDoSai.textContent = giaTriTroll;
   nodeDoSai.style.left = vitri.x + "px";
   nodeDoSai.style.bottom = vitri.y + "px";
@@ -845,7 +821,7 @@ for (let i = 0; i < 2; i++) {
 
   const obj = {
     node: nodeDoSai,
-    loai: "doBoss", // nhìn như vũ khí boss, nhưng sai
+    loai: "doBoss", 
     giaTri: giaTriTroll,
     x: vitri.x,
     y: vitri.y,
@@ -864,7 +840,7 @@ function taoGiaTriSaiChoCong(dapAnCong) {
 }
 
 
-// ✅ Tạo list item vàng sai (nhìn giống chìa khóa mở cổng nhưng sai)
+// Tạo list item vàng sai (nhìn giống chìa khóa mở cổng nhưng sai)
 const giaTriSai = [];
 while (giaTriSai.length < 4) {
   // luôn sinh giá trị kiểu "chìa khóa" (số), KHÔNG phải giờ/phút
@@ -901,11 +877,7 @@ for (const v of giaTriSai) {
 }
 
 
-  // gan gai va item tren nen di chuyen
-  // neu item hoac gai co nenIndex=nenDangDiChuyen => phai di chuyen theo nen do
-  // ta da luu nenIndex cho item, luu cha: cho gai
-
-  // xong man
+  
 }
 
 // =============================
@@ -974,7 +946,7 @@ if (x > oX - 120 && x < oX + 80 && y < 150) {
 
       oDe.textContent = vatDangCam.giaTri;
       oDe.style.background = "#ffe65c";
-      // ✅ giữ nguyên màu vàng khi đặt xuống
+      // giữ nguyên màu vàng khi đặt xuống
       oDe.style.background = "yellow";
       oDe.style.color = "#000";
       oDe.style.boxShadow = "0 0 8px rgba(255,220,0,0.5)";
@@ -983,7 +955,7 @@ if (x > oX - 120 && x < oX + 80 && y < 150) {
       oDe.style.color = "#000";
       oDe.style.boxShadow = "0 0 10px rgba(255,200,0,0.6)";
 
-            // ✅ Cho phép mở cổng nếu boss đã chết hoặc chìa khóa đã đặt trước
+            //  Cho phép mở cổng nếu boss đã chết hoặc chìa khóa đã đặt trước
       if (!quaiBoss || !quaiBoss.song) {
         moCong();
       } else {
@@ -1002,7 +974,7 @@ if (x > oX - 120 && x < oX + 80 && y < 150) {
         vatDangCam._daTha = true;
 
         const nodeRoi = document.createElement("div");
-nodeRoi.className = "vatPham"; // ✅ đổi thành vatPham (vàng)
+nodeRoi.className = "vatPham"; 
 nodeRoi.style.background = "yellow";
 nodeRoi.style.color = "#000";
 
@@ -1108,14 +1080,9 @@ nodeRoi.style.left = (viTriX + dich) + "px";
 
 
 // =============================
-// NEM DAN (phim B)
+// NEM DAN (phim n hoac r)
 // =============================
-// chi tac dung neu dang cam vat pham loai "doBoss" co gia tri == dapAnBoss
-// nem ra 1 vien dan bay ngang (huong huongNhin), roi roi xuong theo trong luc
-// =============================
-// NEM DAN (phim B)
-// =============================
-// chi tac dung neu dang cam vat pham loai "doBoss" co gia tri == dapAnBoss
+
 function nemDan() {
   // chi nem duoc item doBoss
   if (!vatDangCam || vatDangCam.loai !== "doBoss") return;
@@ -1178,7 +1145,6 @@ function capNhatNenDiChuyen(){
   for(let i=0;i<danhSachNen.length;i++){
     const nen=danhSachNen[i];
     if(!nen.diChuyen) continue;
-
     nen.x += nen.tocDo*nen.huong;
     if(nen.x<nen.trai){
       nen.x=nen.trai;
@@ -1188,18 +1154,9 @@ function capNhatNenDiChuyen(){
       nen.x=nen.phai-nen.w;
       nen.huong=-1;
     }
-
-    // cap nhat DOM nen
     nenDom[i].style.left=nen.x+"px";
-
-    // keo gai nao co cha = i
     for(const g of danhSachGai){
       if(g.cha===i){
-        // g.x la vi tri tuong doi luc spawn? hien tai ta luu g.x la toa do tuyet doi.
-        // de gai di theo, ta tinh do lech:
-        // ta can biet khoang lech sau cap nhat.
-        // trick don gian: gan lai g.x theo nen.x + offset.
-        // phai luu offset luc spawn - ta chua luu => lam ngay:
         if(g.offsetX===undefined){
           g.offsetX = g.x - nen.x;
         }
@@ -1262,14 +1219,11 @@ function capNhatBoss(){
     q.x=q.phai-q.w;
     q.huong=-1;
   }
-
   q.node.style.left=q.x+"px";
   q.node.style.bottom=q.y+"px";
-
   // bong phep toan theo boss
   q.nodeBong.style.left=(q.x+q.w/2)+"px";
   q.nodeBong.style.bottom=(q.y+40)+"px";
-
   // va cham nhan vat -> chet
   if(!chet && overlap(x,y,40,40,q.x,q.y,q.w,q.h)){
     chetNhanVat("Bị quái đặc biệt giết 💀");
@@ -1298,26 +1252,23 @@ function capNhatDanBay(){
     // cap nhat
     d.x += d.vx;
     d.y += d.vy;
-    d.vy -= trongLuc*0.5; // roi tu tu, nhe hon nhan vat
-
+    d.vy -= trongLuc*0.5; 
     // cap nhat DOM
     d.node.style.left=d.x+"px";
     d.node.style.bottom=d.y+"px";
 
    d.node.style.left=d.x+"px";
 d.node.style.bottom=d.y+"px";
-
-// ✅ kiểm tra ranh giới ngang: nếu chạm biên, bật ngược lại
+// kiểm tra ranh giới ngang: nếu chạm biên, bật ngược lại
 if (d.x <= 0) {
   d.x = 0;
-  d.vx = Math.abs(d.vx) * 0.7; // bật ngược sang phải, yếu dần
+  d.vx = Math.abs(d.vx) * 0.7;
 }
 if (d.x >= khungGame.clientWidth - 20) {
   d.x = khungGame.clientWidth - 20;
-  d.vx = -Math.abs(d.vx) * 0.7; // bật ngược sang trái, yếu dần
+  d.vx = -Math.abs(d.vx) * 0.7; 
 }
-
-// ✅ kiểm tra ranh giới dọc
+// kiểm tra ranh giới dọc
 if (d.y <= 0) {
   d.y = 0;
   d.vy = 0;
@@ -1327,8 +1278,6 @@ if (d.y > 600) {
   danBay.splice(i,1);
   continue;
 }
-
-
 // check va cham boss dac biet
 if (d.x <= 0 || d.x >= khungGame.clientWidth - 20) {
   d.vx *= -0.5; // bật ngược lại, yếu dần
@@ -1343,9 +1292,6 @@ if (d.y > 600) {
   danBay.splice(i, 1);
   continue;
 }
-
-
-// ✅ neu dan roi xuong dat thi dung lai thanh item tren dat
 if(d.vy <= 0 && d.y <= 0 && !d.daChamDat){
   d.daChamDat = true;
   const nodeRoi = document.createElement("div");
@@ -1365,8 +1311,7 @@ if(d.vy <= 0 && d.y <= 0 && !d.daChamDat){
   });
   d.node.remove();
   danBay.splice(i,1);
-}
-
+    }
   }
 }
 
@@ -1431,15 +1376,12 @@ function capNhat(){
     if(phim.phai && !phim.trai) vanTocX = tocDo;
     else if(phim.trai && !phim.phai) vanTocX = -tocDo;
     else vanTocX = 0;
-
     x += vanTocX;
     if(x<0) x=0;
     if(x>khungGame.clientWidth-40) x=khungGame.clientWidth-40;
-
     // nhay / trong luc
     y += vanTocY;
     vanTocY -= trongLuc;
-
     // cham dat
     if(y<=0){
       if(!dungTrenNen){
@@ -1450,17 +1392,12 @@ function capNhat(){
       vanTocY=0;
       dungTrenNen=true;
     }
-
-    // cap nhat nen di chuyen (va cac vat phu tren nen)
     capNhatNenDiChuyen();
-
-    // kiem tra dung tren nen
     let dangDung=false;
     for(const nen of danhSachNen){
       const trenX = (x+40>nen.x && x<nen.x+nen.w);
       const ganY  = (y<=nen.y+25 && y>=nen.y-5);
       const dangRoi = (vanTocY<=0);
-
       if(trenX && ganY && dangRoi){
         if(!dungTrenNen){
           nhanVat.style.transform="scaleX(1.2) scaleY(0.8)";
@@ -1469,7 +1406,6 @@ function capNhat(){
         y = nen.y + 20;
         vanTocY=0;
         dangDung=true;
-
         // neu nen di chuyen thi keo nhan vat theo
         if(nen.diChuyen){
           x += nen.tocDo*nen.huong;
@@ -1479,25 +1415,19 @@ function capNhat(){
       }
     }
     dungTrenNen = dangDung || y===0;
-
     // cap nhat quai thuong
-    capNhatQuaiThuong();
-
+    capNhatQuaiThuong()
     // cap nhat boss
     capNhatBoss();
-
     // kiem tra gai
     kiemTraGai();
     // cap nhat vat ly cho tat ca item
     capNhatItemRoi();
-
     // cap nhat dan dang bay
     capNhatDanBay();
-
     // cap nhat vi tri nhan vat (DOM)
     nhanVat.style.left=x+"px";
     nhanVat.style.bottom=y+"px";
-
     // camera follow: dich toan bo khungGame nguoc lai
     const viewW = khungNgoai.clientWidth;
     const mucTieuCam = x - viewW/2 + 20;
@@ -1505,17 +1435,14 @@ function capNhat(){
     const gioiHanMax = khungGame.clientWidth - viewW;
     const camX = Math.max(gioiHanMin,Math.min(mucTieuCam,gioiHanMax));
     khungGame.style.transform=`translateX(${-camX}px)`;
-
     // cap nhat bong phep boss theo camera (da lam trong capNhatBoss)
     if(quaiBoss && quaiBoss.song && quaiBoss.nodeBong){
       // da set left/bottom tuyet doi nen OK
     }
-
     // hiển thị vật phẩm trên đầu nhân vật
 if(vatDangCam){
   vatCam.textContent = vatDangCam.giaTri;
   vatCam.style.display = "block";
-
   // đổi màu theo loại vật phẩm
   if(vatDangCam.loai === "doBoss"){
     vatCam.style.background = "#ff2b2b"; // đỏ
@@ -1533,8 +1460,6 @@ if(vatDangCam){
 } else {
   vatCam.style.display = "none"; // không cầm gì thì ẩn
 }
-
-
     // tim item gan nhan vat de show hint "Nhan N de nhat"
     ganItemDeNhat=null;
     hideHint();
@@ -1547,7 +1472,6 @@ if(vatDangCam){
         break;
       }
     }
-
     // chi qua man khi cong da mo va boss da bi tieu diet
     if(congDaMo && (!quaiBoss || !quaiBoss.song)){
   const congVungX = khungGame.clientWidth - 100;
@@ -1561,32 +1485,23 @@ if(vatDangCam){
       amThanhQuaMan.currentTime = 0;
       amThanhQuaMan.play().catch(() => {});
     }
-
     nhanVat.style.transform = "scale(1.2,1.2)";
     setTimeout(() => {
       manHienTai++;
-
       // nếu quá 5 màn thì kết thúc game
       if(manHienTai > 5){
         setThongBao("🎉 Qua màn " + manHienTai + " thành công! +100 điểm","#0a0");
-
 // thêm hiệu ứng bung sáng cho thông báo
 const thongBao = document.getElementById("thongBao");
 if (thongBao) thongBao.style.animation = "thongBaoWin 0.5s ease";
-
         hienGameOver();
         return;
       }
-
       taoMan();
     }, 1200);
   }
 }
-
  }
- 
-
-  
 }
 // =============================
 // CAP NHAT VAT PHEP (ITEM ROI XUONG DAT)
@@ -1626,25 +1541,25 @@ function capNhatDanBay(){
     d.y += d.vy;
     d.vy -= trongLuc * 0.5;
 
-    // ✅ kiểm tra biên trái
+    //  kiểm tra biên trái
     if (d.x <= 0) {
       d.x = 0;
       d.vx = Math.abs(d.vx) * 0.6; // bật ngược sang phải
     }
 
-    // ✅ kiểm tra biên phải
+    //kiểm tra biên phải
     if (d.x >= khungGame.clientWidth - 20) {
       d.x = khungGame.clientWidth - 20;
       d.vx = -Math.abs(d.vx) * 0.6; // bật ngược sang trái
     }
 
-    // ✅ kiểm tra chạm đất
+    //  kiểm tra chạm đất
     if (d.y <= 0) {
       d.y = 0;
       d.vy = 0;
     }
 
-    // ✅ kiểm tra rơi quá xa
+    //  kiểm tra rơi quá xa
     if (d.y > 600) {
       d.node.remove();
       danBay.splice(i, 1);
@@ -1655,7 +1570,7 @@ function capNhatDanBay(){
     d.node.style.left = d.x + "px";
     d.node.style.bottom = d.y + "px";
 
-    // ✅ kiểm tra va chạm boss
+    //  kiểm tra va chạm boss
     if (quaiBoss && quaiBoss.song) {
       if (overlap(d.x, d.y, 20, 20, quaiBoss.x, quaiBoss.y, quaiBoss.w, quaiBoss.h)) {
         if (d.hieuLucBoss) {
@@ -1667,7 +1582,7 @@ function capNhatDanBay(){
       }
     }
 
-    // ✅ nếu đạn rơi xuống đất -> trở thành item
+    //  nếu đạn rơi xuống đất -> trở thành item
     if (d.vy <= 0 && d.y <= 0 && !d.daChamDat) {
       d.daChamDat = true;
       const nodeRoi = document.createElement("div");
@@ -1825,6 +1740,8 @@ capNhatDiem();
     }
   }
 });
+
+//Live Server
 // <![CDATA[  <-- For SVG support
 	if ('WebSocket' in window) {
 		(function () {
